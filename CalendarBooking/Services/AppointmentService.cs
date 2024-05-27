@@ -77,15 +77,34 @@ namespace CalendarBooking.Services
         {
             var slots = new List<DateTime>();
             var startTime = new DateTime(date.Year, date.Month, date.Day, 9, 0, 0);
-            var endTime = new DateTime(date.Year, date.Month, date.Day, 17, 30, 0);
+            var endTime = new DateTime(date.Year, date.Month, date.Day, 17, 00, 0);
 
-            while (startTime < endTime)
+            var existingAppointments = _appointmentRepository.GetAppointments()
+             .Where(a => a.DateTime.Date == date.Date)
+             .OrderBy(a => a.DateTime)
+             .ToList();
+
+            while (startTime <= endTime)
             {
-                if (IsValidTimeSlot(startTime) && !_appointmentRepository.GetAppointments().Any(a => a.DateTime == startTime))
+                // Find the next available 30-minute slot
+                bool slotAvailable = true;
+                foreach (var appointment in existingAppointments)
+                {
+                    var appointmentEnd = appointment.DateTime.AddMinutes(30);
+                    if ((startTime >= appointment.DateTime && startTime < appointmentEnd) ||
+                        (startTime.AddMinutes(30) > appointment.DateTime && startTime < appointmentEnd))
+                    {
+                        slotAvailable = false;
+                        startTime = appointmentEnd;  
+                        break;
+                    }
+                }
+
+                if (slotAvailable)
                 {
                     slots.Add(startTime);
+                    startTime = startTime.AddMinutes(30);  
                 }
-                startTime = startTime.AddMinutes(30);
             }
 
             return slots;

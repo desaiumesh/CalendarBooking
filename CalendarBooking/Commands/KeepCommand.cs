@@ -23,7 +23,7 @@ namespace CalendarBooking.Commands
             if (timeSpecifier == null)
             {
                 // Try parsing as 24-hour format
-                if (!TimeSpan.TryParseExact(timePart, "HH:mm", CultureInfo.InvariantCulture, out time))
+                if (!TimeSpan.TryParseExact(timePart, "hh\\:mm", CultureInfo.InvariantCulture, out time))
                 {
                     Console.WriteLine("Invalid time format. Please use format: hh:mm or hh:mm tt");
                     return;
