@@ -1,6 +1,9 @@
 # Calendar Booking Application
 
-This application is a simple console command-line application for managing appointment bookings.
+This application is a simple console command-line application for managing appointment bookings. it's using
+.net 8.0,
+SqlExpress and
+Entity Framework
 
 ## Commands
 
