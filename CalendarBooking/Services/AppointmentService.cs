@@ -102,7 +102,9 @@ namespace CalendarBooking.Services
 
                 if (slotAvailable)
                 {
-                    slots.Add(startTime);
+                    if(!IsSecondDayOfThirdWeek(startTime))
+                      slots.Add(startTime);
+
                     startTime = startTime.AddMinutes(30);  
                 }
             }
