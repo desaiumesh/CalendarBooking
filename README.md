@@ -23,6 +23,7 @@ Entity Framework
 - Since acceptance time is between 9 AM and 5PM, it is assumed that there would be available slot from 5 PM to 5.30 PM.
 - timeslot could be arbitory ex. 13:06
 - FIND will display slots which are available for 30 min
+- 1st week of month will start from Monday, so 2nd day of third week is considered from full 3rd week, starting from Monday. ex. if 1st day of Month is not Monday then it doesn't consider that 1st week of month.
 
 ## Database
 
