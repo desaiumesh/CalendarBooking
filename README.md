@@ -21,6 +21,8 @@ Entity Framework
 
 - time format said to be hh:mm but it needs timeSpecifier (tt : AM/PM), so it is assumed that time will be excepted in either HH:mm or hh:mm tt format. Example ADD 15/07 15:00 or ADD 15/07 03:00 PM
 - Since acceptance time is between 9 AM and 5PM, it is assumed that there would be available slot from 5 PM to 5.30 PM.
+- timeslot could be arbitory ex. 13:06
+- FIND will display slots which are available for 30 min
 
 ## Database
 
